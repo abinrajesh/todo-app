@@ -21,6 +21,11 @@ A minimalist and responsive To-Do List web application built with **HTML**, **CS
 ![App Screenshot](./Assets/Screen%20shot/Screenshot.png)
 
 ---
+## Live Site
+
+https://abinrajesh.github.io/todo-app/
+
+---
 
 ## 🛠️ Tech Stack
 
