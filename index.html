@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <video autoplay muted loop playsinline id="bgVideo">
+        <source src="Assets/Background/lv_0_20250623123044.mp4" type="video/mp4" />
+    </video>
+    <div class="container">
+
+        <div class="heading">
+            <h1>To - Do List</h1>
+        </div>
+
+        <div class="search">
+            <form action="">
+                <input class="inp" placeholder="Search tasks here" type="search" name="search" id="">
+                <button type="submit" class="btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                        class="bi bi-search" viewBox="0 0 16 16">
+                        <path
+                            d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
+                    </svg>
+                </button>
+            </form>
+        </div>
+
+        <div class="todoCard"></div>
+
+        <div class="addToDoContainer">
+
+            <h4>Add a new Task :</h4>
+            <form action="">
+                <input class="inp" id="addTaskInp" placeholder="Type task here " type="text">
+                <button id="addTaskBtn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-plus-lg" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                            d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2" />
+                    </svg>
+                </button>
+            </form>
+
+        </div>
+
+
+    </div>
+    <footer>
+        <p>&copy; <span id="year"></span> Abin's To-Do List. All rights reserved.</p>
+        <div class="social-icons">
+            <a href="https://github.com/abinrajesh" target="_blank" aria-label="GitHub">
+                <img src="Assets/Logos/github.svg" alt="GitHub">
+            </a>
+            <a href="https://linkedin.com/in/abinrajesh" target="_blank" aria-label="LinkedIn">
+                <img src="Assets/Logos/linkedin.svg" alt="LinkedIn">
+            </a>
+            <a href="https://instagram.com/abin.rajesh_" target="_blank" aria-label="Instagram">
+                <img src="Assets/Logos/instagram.svg" alt="Instagram">
+            </a>
+            <a href="mailto:abinrajeshh@gmail.com" aria-label="Email">
+                <img src="Assets/Logos/gmail.svg" alt="Email">
+            </a>
+        </div>
+    </footer>
+
+
+    <script src="script.js"></script>
+</body>
+
+</html>
