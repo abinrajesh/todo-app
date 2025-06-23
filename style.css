@@ -70,7 +70,7 @@
 
     .inp {
         background-color: rgba(255, 255, 255, 0.1);
-        /* min-width: 100px; */ 
+        /* min-width: 100px; */
         border: none;
         border-radius: 10px;
         padding: 10px 35px 10px 15px;
@@ -109,6 +109,20 @@
         color: red;
         font-size: 18px;
     }
+
+    @keyframes shake {
+        0%   { transform: translateX(0); }
+        20%  { transform: translateX(-5px); }
+        40%  { transform: translateX(5px); }
+        60%  { transform: translateX(-5px); }
+        80%  { transform: translateX(5px); }
+        100% { transform: translateX(0); }
+    }
+
+    .emptyError {
+        animation: shake 0.5s ease;
+    }
+
 
     .todoCard .sections {
         margin: 5px 0 0 0;
@@ -251,57 +265,71 @@
 
 
     /* Extra small devices (phones, less than 480px) */
-@media (max-width: 479px) {
+    @media (max-width: 479px) {
 
-    .sections {
-        width: 300px;
-    }
-    .inp {
-        width: 250px;
-    }
+        .sections {
+            width: 300px;
+        }
 
-}
+        .inp {
+            width: 250px;
+        }
 
-/* Small devices (phones, 480px and up) */
-@media (min-width: 480px) and (max-width: 767px) {
-    .sections {
-        width: 400px;
-    }
-    .inp {
-        width: 350px;
-    }
+        .todoCard .emptyError {
 
-}
+            max-width: 250px;
+            text-align: center;
+            font-size: 12px;
 
-/* Medium devices (tablets, 768px and up) */
-@media (min-width: 768px) and (max-width: 1024px) {
-    .sections {
-        width: 400px;
-    }
-    .inp {
-        width: 350px;
+        }
+
+
     }
 
-}
+    /* Small devices (phones, 480px and up) */
+    @media (min-width: 480px) and (max-width: 767px) {
+        .sections {
+            width: 400px;
+        }
 
-/* Large devices (laptops/desktops, 1025px and up) */
-@media (min-width: 1025px) and (max-width: 1200px) {
-    .sections {
-        width: 400px;
-    }
-    .inp {
-        width: 350px;
-    }
+        .inp {
+            width: 350px;
+        }
 
-}
-
-/* Extra large devices (large desktops, 1201px and up) */
-@media (min-width: 1201px) {
-    .sections {
-        width: 400px;
-    }
-    .inp {
-        width: 350px;
     }
 
-}
+    /* Medium devices (tablets, 768px and up) */
+    @media (min-width: 768px) and (max-width: 1024px) {
+        .sections {
+            width: 400px;
+        }
+
+        .inp {
+            width: 350px;
+        }
+
+    }
+
+    /* Large devices (laptops/desktops, 1025px and up) */
+    @media (min-width: 1025px) and (max-width: 1200px) {
+        .sections {
+            width: 400px;
+        }
+
+        .inp {
+            width: 350px;
+        }
+
+    }
+
+    /* Extra large devices (large desktops, 1201px and up) */
+    @media (min-width: 1201px) {
+        .sections {
+            width: 400px;
+        }
+
+        .inp {
+            width: 350px;
+        }
+
+    }
