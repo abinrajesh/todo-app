@@ -18,7 +18,7 @@ A minimalist and responsive To-Do List web application built with **HTML**, **CS
 
 ## 📸 Screenshot
 
-
+![App Screenshot](./Assets/Screen%20shot/screenshot.png)
 
 ---
 
