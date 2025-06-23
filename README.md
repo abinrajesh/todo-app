@@ -18,7 +18,7 @@ A minimalist and responsive To-Do List web application built with **HTML**, **CS
 
 ## 📸 Screenshot
 
-> *(Insert a screenshot here once you've pushed it!)*
+
 
 ---
 
