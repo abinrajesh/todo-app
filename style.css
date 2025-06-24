@@ -1,462 +1,426 @@
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
-    * {
-        margin: 0;
-        padding: 0;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+    color: white;
+}
+
+#bgVideo {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    min-width: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
+
+.container {
+    position: relative;
+    z-index: 1;
+    height: 81.5vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.heading {
+    margin: 50px 0;
+}
+
+.heading h1 {
+    font-size: 40px;
+}
+
+.search {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease-in-out;
+}
+
+.search.visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.search form {
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    gap: 10px;
+    position: relative;
+}
+
+.btn {
+    background: none;
+    color: #bbbbbb;
+    border: none;
+    position: absolute;
+    right: 0;
+    top: 15px;
+    padding: 3px 10px 20px;
+}
+
+.inp {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: none;
+    border-radius: 10px;
+    padding: 10px 35px 10px 15px;
+    color: white;
+    backdrop-filter: blur(10px);
+    margin: 10px auto;
+    display: block;
+    width: 100%;
+    max-width: 400px;
+}
+
+.inp::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.inp:focus {
+    outline: none;
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+.inp:hover {
+    background-color: rgba(255, 255, 255, 0.192);
+}
+
+.todoCard {
+    display: grid;
+    margin-top: 30px;
+    max-height: 30vh;
+    overflow: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    scroll-behavior: smooth;
+}
+
+.todoCard::-webkit-scrollbar {
+    display: none;
+}
+
+.todoCard .emptyError {
+    color: red;
+    font-size: 18px;
+    animation: shake 0.5s ease;
+}
+
+@keyframes shake {
+
+    0%,
+    100% {
+        transform: translateX(0);
     }
 
-    body {
-        font-family: "Poppins", sans-serif;
-        color: white;
+    20%,
+    60% {
+        transform: translateX(-5px);
     }
 
-    #bgVideo {
-        position: fixed;
-        top: 0;
-        left: 0;
-        height: 100vh;
-        min-width: 100%;
-        object-fit: cover;
-        z-index: -1;
+    40%,
+    80% {
+        transform: translateX(5px);
     }
+}
 
-    .container {
-        position: relative;
-        z-index: 1;
-        height: 81.5vh;
-        width: 100vw;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+.sections {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 5px;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.18);
+    padding: 5px 20px 5px 20px;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.4s ease, transform 0.4s ease, background-color 0.3s;
+    width: 100%;
+    max-width: 400px;
+}
 
-    }
+.sections.fade-in {
+    opacity: 1;
+    transform: translateY(0);
+}
 
-    .heading {
-        margin: 50px 0 0 0;
-    }
+.sections:hover {
+    background-color: rgba(255, 255, 255, 0.25);
+}
 
-    .heading h1 {
-        font-size: 40px;
-    }
+.sections span {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 20px;
+}
 
-    .search {
+.sections svg {
+    display: none;
+}
+
+.sections input[type="checkbox"] {
+    appearance: none;
+    background-color: transparent;
+    border: 2px solid white;
+    width: 20px;
+    height: 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    position: relative;
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+.sections input[type="checkbox"]:checked {
+    background-color: white;
+    border-color: white;
+}
+
+.sections input[type="checkbox"]:checked::after {
+    content: "✔";
+    color: black;
+    font-size: 14px;
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    line-height: 1;
+}
+
+.right {
+    display: flex;
+    gap: 5px;
+}
+
+.editBtn,
+.deleteBtn {
+    background: none;
+    border: none;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transform: translateX(10px);
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.editBtn img,
+.deleteBtn img {
+    width: 20px;
+    height: 20px;
+    filter: brightness(0) invert(1);
+    opacity: 0.7;
+}
+
+.sections:hover .editBtn,
+.sections:hover .deleteBtn {
+    opacity: 1;
+    transform: translateX(0);
+    pointer-events: auto;
+}
+
+.editBtn:hover img,
+.deleteBtn:hover img {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+.taskEditPopUp {
+    width: 90%;
+    max-width: 400px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 20px;
+    border-radius: 15px;
+    position: relative;
+    z-index: 10000;
+}
+
+.taskEditPopUp textarea {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: none;
+    border-radius: 10px;
+    padding: 15px;
+    color: white;
+    backdrop-filter: blur(10px);
+    resize: none;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.taskEditSubmit-btn {
+    position: absolute;
+    bottom: -40px;
+    right: 0%;
+    padding: 5px 10px;
+    font-size: 14px;
+    color: white;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Poppins', sans-serif;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.taskEditSubmit-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.05);
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.2);
+}
+
+.taskEditSubmit-btn:active {
+    transform: scale(0.98);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+
+.popupOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(5px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+    from {
         opacity: 0;
-        pointer-events: none;
-        transition: opacity 0.4s ease-in-out;
     }
 
-    .search.visible {
+    to {
         opacity: 1;
-        pointer-events: auto;
     }
+}
 
-    .search form {
-        display: flex;
-        align-items: start;
-        justify-content: center;
-        gap: 10px;
-        position: relative;
-    }
 
-    .btn {
-        background-color: transparent;
-        color: #bbbbbb;
-        border: none;
-        position: absolute;
-        right: 0px;
-        top: 15px;
-        padding: 3px 10px 20px 10px;
+
+.addToDoContainer {
+    text-align: center;
+    margin-top: 30px;
+    position: relative;
+    width: 90%;
+    max-width: 400px;
+}
+
+.addToDoContainer form {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.addToDoContainer button {
+    position: absolute;
+    height: 30px;
+    width: 30px;
+    right: 30px;
+    top: 15px;
+    background-color: transparent;
+    color: #bbbbbb;
+    border: none;
+    border-radius: 5px;
+}
+
+.addToDoContainer button svg {
+    height: 90%;
+    width: 90%;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100vw;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #aaa;
+    padding: 20px 0;
+    background: rgba(0, 0, 0, 0.3);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+}
+
+.social-icons {
+    margin-top: 10px;
+}
+
+.social-icons a {
+    margin: 0 10px;
+    display: inline-block;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.social-icons img {
+    width: 24px;
+    height: 24px;
+    filter: brightness(0) invert(1);
+    opacity: 0.7;
+}
+
+.social-icons a:hover img {
+    transform: scale(1.2);
+    opacity: 1;
+}
+
+@media (max-width: 479px) {
+    .sections {
+        width: 300px;
     }
 
     .inp {
-        background-color: rgba(255, 255, 255, 0.1);
-        /* min-width: 100px; */
-        border: none;
-        border-radius: 10px;
-        padding: 10px 35px 10px 15px;
-        color: white;
-        backdrop-filter: blur(10px);
-        margin: 10px auto;
-        display: block;
-
-    }
-
-    .inp::placeholder {
-        color: rgba(255, 255, 255, 0.5);
-    }
-
-    .in:focus {
-        outline: none;
-        background-color: rgba(255, 255, 255, 0.15);
-    }
-
-    .todoCard {
-        display: grid;
-        margin: 30px 0 0 0;
-        max-height: 30vh;
-        overflow: auto;
-        scrollbar-width: none;
-        -ms-overflow-style: none;
-        scroll-behavior: smooth;
-
-    }
-
-    .todoCard::-webkit-scrollbar {
-        display: none;
-    }
-
-    .todoCard .emptyError {
-        color: red;
-        font-size: 18px;
-    }
-
-    @keyframes shake {
-        0% {
-            transform: translateX(0);
-        }
-
-        20% {
-            transform: translateX(-5px);
-        }
-
-        40% {
-            transform: translateX(5px);
-        }
-
-        60% {
-            transform: translateX(-5px);
-        }
-
-        80% {
-            transform: translateX(5px);
-        }
-
-        100% {
-            transform: translateX(0);
-        }
-    }
-
-    .emptyError {
-        animation: shake 0.5s ease;
-    }
-
-
-    .todoCard .sections {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin: 5px 0 0 0;
-        border-radius: 5px;
-        background-color: rgba(255, 255, 255, 0.177);
-        box-sizing: border-box;
-        padding: 5px 0px 5px 20px;
-        opacity: 0;
-        transform: translateY(10px);
-        transition: opacity 0.4s ease, transform 0.4s ease;
-    }
-
-    .todoCard .sections.fade-in {
-        opacity: 1;
-        transform: translateY(0);
-    }
-
-    .todoCard .sections span {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        font-size: 20px;
-    }
-
-    .todoCard .sections:hover {
-        background-color: rgba(255, 255, 255, 0.252);
-
-    }
-
-    .todoCard .sections svg {
-        display: none;
-    }
-
-    .todoCard .sections input {
-        appearance: none;
-        -webkit-appearance: none;
-        background-color: transparent;
-        border: 2px solid white;
-        width: 20px;
-        height: 20px;
-        border-radius: 5px;
-        cursor: pointer;
-        position: relative;
-        transition: background-color 0.2s, border-color 0.2s;
-    }
-
-
-    .todoCard .sections input:checked {
-        background-color: white;
-        border-color: white;
-    }
-
-    .todoCard .sections input:checked::after {
-        content: "✔";
-        color: black;
-        font-size: 14px;
-        position: absolute;
-        top: 60%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        line-height: 1;
-    }
-
-    .right {
-        display: flex;
-        padding: 0 20px 0 0;
-        align-items: center;
-        gap: 5px;
-    }
-
-    .editBtn,
-    .deleteBtn {
-        opacity: 0;
-        transform: translateX(10px);
-        pointer-events: none;
-        transition: opacity 0.3s ease, transform 0.3s ease;
-        background: none;
-        border: none;
-        padding: 4px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .editBtn img,
-    .deleteBtn img {
-        width: 20px;
-        height: 20px;
-        filter: brightness(0) invert(1);
-        opacity: 0.7;
-    }
-
-    .sections:hover .editBtn,
-    .sections:hover .deleteBtn {
-        opacity: 1;
-        transform: translateX(0);
-        pointer-events: auto;
-    }
-
-    .editBtn:hover img,
-    .deleteBtn:hover img {
-        opacity: 1;
-        transform: scale(1.1);
-    }
-
-    .taskEditPopUp {
-        z-index: 11;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        height: 400px;
-        width: 500px;
-    }
-
-    .taskEditPopUp textarea {
-        position: relative;
-        width: 100%;
-        height: 100%;
-        border: none;
-        background-color: rgba(255, 255, 255, 0.1);
-        border: none;
-        border-radius: 10px;
-        padding: 10px 35px 10px 15px;
-        color: white;
-        backdrop-filter: blur(10px);
-        padding: 10px;
-        resize: none;
-        /* Optional: prevent resizing */
-        font-size: 16px;
-        line-height: 1.5;
-        box-sizing: border-box
-    }
-
-    .taskEditSubmit-btn {
-        position: absolute;
-        bottom: -15px;
-        left: 430px;
-        padding: 5px 10px;
-        font-size: 14px;
-        color: white;
-        background: rgba(255, 255, 255, 0.1);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-        border: 1px solid rgba(255, 255, 255, 0.3);
-        border-radius: 10px;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        font-family: 'Poppins', sans-serif;
-        letter-spacing: 0.5px;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    }
-
-    .taskEditSubmit-btn:hover {
-        background: rgba(255, 255, 255, 0.2);
-        transform: scale(1.05);
-        box-shadow: 0 6px 25px rgba(0, 0, 0, 0.2);
-    }
-
-    .taskEditSubmit-btn:active {
-        transform: scale(0.98);
-        background: rgba(255, 255, 255, 0.15);
-    }
-
-
-    .addToDoContainer {
-        text-align: center;
-        margin-top: 30px;
-        position: relative;
-    }
-
-    .addToDoContainer h4 {
-        font-weight: normal;
+        width: 250px;
     }
 
     .addToDoContainer form {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 5px;
-    }
-
-    .addToDoContainer input {
         position: relative;
     }
 
-    .inp:hover {
-        background-color: rgba(255, 255, 255, 0.192)
-    }
-
-
     .addToDoContainer button {
         position: absolute;
-        height: 30px;
-        width: 30px;
-        right: 5px;
-        top: 38px;
-        background-color: transparent;
-        color: #bbbbbb;
-        border: none;
-        border-radius: 5px;
-        border: none;
+        right: 80px;
     }
 
-    .addToDoContainer button svg {
-        height: 90%;
-        width: 90%;
+}
 
+@media (min-width: 480px) and (max-width: 767px) {
+    .sections {
+        width: 400px;
     }
 
-    footer {
-        position: absolute;
-        bottom: 0px;
-        min-width: 100vw;
-        text-align: center;
-        font-size: 0.9rem;
-        color: #aaa;
-        padding: 20px 0;
-        margin-top: 40px;
-        backdrop-filter: blur(10px);
-        background: rgba(0, 0, 0, 0.3);
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
+    .inp {
+        width: 350px;
+    }
+}
+
+@media (min-width: 768px) {
+    .sections {
+        width: 400px;
     }
 
-    .social-icons {
-        margin-top: 10px;
+    .inp {
+        width: 350px;
     }
-
-    .social-icons a {
-        margin: 0 10px;
-        display: inline-block;
-        transition: transform 0.2s ease, opacity 0.2s ease;
-    }
-
-    .social-icons img {
-        width: 24px;
-        height: 24px;
-        filter: brightness(0) invert(1);
-        opacity: 0.7;
-    }
-
-    .social-icons a:hover img {
-        transform: scale(1.2);
-        opacity: 1;
-    }
-
-
-
-    /* Extra small devices (phones, less than 480px) */
-    @media (max-width: 479px) {
-
-        .sections {
-            width: 300px;
-        }
-
-        .inp {
-            width: 250px;
-        }
-
-        .todoCard .emptyError {
-
-            max-width: 250px;
-            text-align: center;
-            font-size: 12px;
-
-        }
-
-
-    }
-
-    /* Small devices (phones, 480px and up) */
-    @media (min-width: 480px) and (max-width: 767px) {
-        .sections {
-            width: 400px;
-        }
-
-        .inp {
-            width: 350px;
-        }
-
-    }
-
-    /* Medium devices (tablets, 768px and up) */
-    @media (min-width: 768px) and (max-width: 1024px) {
-        .sections {
-            width: 400px;
-        }
-
-        .inp {
-            width: 350px;
-        }
-
-    }
-
-    /* Large devices (laptops/desktops, 1025px and up) */
-    @media (min-width: 1025px) and (max-width: 1200px) {
-        .sections {
-            width: 400px;
-        }
-
-        .inp {
-            width: 350px;
-        }
-
-    }
-
-    /* Extra large devices (large desktops, 1201px and up) */
-    @media (min-width: 1201px) {
-        .sections {
-            width: 400px;
-        }
-
-        .inp {
-            width: 350px;
-        }
-
-    }
+}
