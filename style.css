@@ -391,17 +391,9 @@ footer {
     }
 
     .inp {
-        width: 250px;
+        width: 280px;
     }
 
-    .addToDoContainer form {
-        position: relative;
-    }
-
-    .addToDoContainer button {
-        position: absolute;
-        right: 80px;
-    }
 
 }
 
