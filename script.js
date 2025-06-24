@@ -24,7 +24,7 @@ function addTask(event) {
         // creating section child left
         const leftDiv = document.createElement('div');
         leftDiv.className = 'left';
-        
+
         // creating section child rigth
         const rightDiv = document.createElement('div');
         rightDiv.className = 'right';
@@ -131,6 +131,7 @@ function addTask(event) {
         deleteBtn.innerHTML = `<img src="Assets/Icons/trash3-fill.svg" alt="">`;
         deleteBtn.addEventListener("click", () => {
             taskDiv.remove();
+            updateSearchVisibility();
         });
 
         // appending the child elements of section
@@ -147,7 +148,9 @@ function addTask(event) {
 
 
         // Making search bar visible only after appending the sections
-        document.querySelector(".search").classList.add("visible");
+        // document.querySelector(".search").classList.add("visible");
+        updateSearchVisibility();
+
 
         // Clearing the addTaskInput value and focusing again
         document.getElementById('addTaskInp').value = "";
@@ -180,6 +183,8 @@ searchInput.addEventListener("input", function () {
         const taskText = taskSpan ? taskSpan.textContent.toLowerCase() : '';
         card.style.display = taskText.includes(searchValue) ? '' : 'none';
     });
+    updateSearchVisibility();
+
 });
 
 //  Search Confirm on Enter
@@ -205,3 +210,17 @@ searchInput.addEventListener('keydown', function (e) {
         }
     }
 });
+
+// Search bar disappear after all tasks deleted
+
+function updateSearchVisibility() {
+    const cards = document.querySelectorAll(".todoCard .sections");
+    const anyVisible = Array.from(cards).some(card => card.style.display !== "none");
+
+    const searchBar = document.querySelector(".search");
+    if (anyVisible) {
+        searchBar.classList.add("visible");
+    } else {
+        searchBar.classList.remove("visible");
+    }
+}
