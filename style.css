@@ -393,11 +393,13 @@ footer {
     .inp {
         width: 280px;
     }
+
     .todoCard .emptyError {
-    color: red;
-    font-size: 12px;
-    animation: shake 0.5s ease;
-}
+        text-align: center;
+        color: red;
+        font-size: 12px;
+        animation: shake 0.5s ease;
+    }
 
 
 }
